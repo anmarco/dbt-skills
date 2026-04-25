@@ -1,0 +1,13 @@
+{
+  "name": "dbt-skill",
+  "owner": {
+    "name": "Andre Pereira"
+  },
+  "plugins": [
+    {
+      "name": "dbt-skill",
+      "source": "./",
+      "description": "dbt Core assistant skill for Claude Code"
+    }
+  ]
+}

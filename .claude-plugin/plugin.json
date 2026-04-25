@@ -1,0 +1,8 @@
+{
+  "name": "dbt-skill",
+  "version": "0.1.0",
+  "description": "dbt Core assistant: model authoring, testing, exploration, and adapter-aware patterns (Spark/Databricks, DuckDB, Postgres).",
+  "author": {
+    "name": "Andre Pereira"
+  }
+}
