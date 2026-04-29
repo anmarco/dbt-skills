@@ -1,13 +1,31 @@
 ---
 name: dbt-skill
 description: >
-  Expert dbt (data build tool) assistant for dbt Core projects. Use this skill
-  whenever the user wants to: create or improve dbt SQL models, write or update
-  schema/yml files, add dbt tests, explore data with dbt show --inline, run or
-  test models, understand project structure, debug dbt errors, or discuss
-  modeling strategy. Triggers on any mention of dbt, models, staging, marts,
-  sources, ref(), dim_, fct_, stg_, bronze/silver/gold layers, incremental
-  models, dbt run, dbt test, dbt compile, or data warehouse modeling.
+  Expert dbt (data build tool) assistant for dbt Core projects: model authoring,
+  schema/yml files, tests, data exploration via `dbt show --inline`, run/test
+  workflows, project structure, error debugging, modeling strategy.
+
+  PRIMARY TRIGGER (load even if the user message says nothing about dbt):
+  the working directory — or any ancestor — contains a `dbt_project.yml`. In
+  that case, load this skill on the FIRST turn regardless of the request type,
+  including meta-tasks like "review this PR", "audit this code", "lint", "fix
+  the bug", "explain this file", "write tests", "refactor", etc.
+
+  SECONDARY TRIGGER (lexical, when cwd is unknown or non-dbt): user message
+  mentions dbt, `dbt run`/`test`/`build`/`compile`/`show`, `ref()`, `source()`,
+  models named `stg_`/`int_`/`fct_`/`dim_`, schema.yml, sources.yml,
+  dbt_project.yml, profiles.yml, staging/intermediate/marts, bronze/silver/gold,
+  incremental models, macros, seeds, snapshots, exposures, dbt-utils, or data
+  warehouse modeling (Kimball, star schema, surrogate keys).
+
+  CO-OCCURRENCE: this skill is ADDITIVE context, not exclusive. Load it IN
+  PARALLEL with task skills like `review`, `security-review`, `simplify`,
+  `init`, `karpathy-guidelines`, etc. — never treat one of those as a reason
+  to skip this one. If both apply, invoke both.
+
+  SKIP only when: cwd is clearly not a dbt project AND the user message has
+  no dbt/warehouse-modeling content, OR the user explicitly says to ignore
+  this skill.
 ---
 
 # dbt Skill
